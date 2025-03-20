@@ -1,0 +1,76 @@
+{% include "header.html" %}
+
+<div class="container" style="height: 25px;"></div>
+
+<div class="container" style="height:50px;"></div>
+<div class="card col-6 offset-3" style="max-width: 700px; border-color: #003366;">
+  <div class="row g-0">
+    <div class="col-md-4" style="display: flex;
+                        justify-content: center;
+                        align-items: center;">
+      <img src="{{ url_for ('static', filename='/images/i4.jpg') }}" class="img-fluid rounded-start" alt="prospotwelder" style="width:78%; padding: 10px;">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body card text-white" style="background-color: #003366;">
+        <h5 class="card-title">Equipment Info</h5>
+        <p class="card-text">
+          <form method="POST" action="{{ url_for('prospot_payment') }}">
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="fas fa-file-lines" style="width: 7px"></i></span>
+              <select class="form-control" name="equipment" style="focus:none; box-shadow: none;">
+                <option value="" disabled selected>Choose Equipment</option>
+                <option value="I5 Smart Welder">I5 Smart Welder</option>
+                <option value="I5s Smart Welder">I5s Smart Welder</option>
+                <option value="I4 Inverter Spot Welder">I4 Inverter Spot Welder</option>
+                <option value="I4s Inverter Spot Welder">I4s Inverter Spot Welder</option>
+                <option value="Hybrid Spot Welder">Hybrid Spot Welder</option>
+                <option value="SP-5 Smart Mig">SP-5 Smart Mig</option>
+                <option value="SP-5 Double Pulse Mig">SP-5 Double Pulse Mig</option>
+                <option value="PR-8D Rivet Bonding Station">PR-8D Rivet Bonding Station</option>
+                <option value="PR-5D Digital Rivet Bonding Station">PR-5D Digital Rivet Bonding Station</option>
+                <option value="PR-8D Digital Riveting System">PR-8D Digital Riveting System</option>
+                <option value="MWS-G2d, 110V Glue Pull">MWS-G2d, 110V Glue Pull</option>
+                <option value="PR-8D Pro">PR-8D Pro</option>
+                <option value="PS-DA5 - Drawn Arc Welder">PS-DA5 - Drawn Arc Welder</option>
+                <option value="i4 Cassette Assembly">i4 Cassette Assembly</option>
+              </select>
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="fas fa-dollar-sign" style="width: 7px"></i></span>
+              <input class="form-control" type="number" name="cost" placeholder="Equipment Cost" aria-label="Equipment Cost" style="focus:none; box-shadow: none;">
+            </div>
+            <button type="submit" class="btn btn-light" style="color: #003366;">Calculate Payment</button>
+            <p></p>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" style="height: 50px;"></div>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card h-100 border-0">
+      <img src="{{ url_for ('static', filename='/images/i4s-new-base.jpg') }}" class="card-img-top" alt="..." style="display:block; margin-left: auto; margin-right: auto; max-height:150px; width:auto;">
+      <div class="card-body">
+        <h5 class="card-title" style="text-align:center;">Spot Welding</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100 border-0">
+      <img src="{{ url_for ('static', filename='/images/SP5-DP.jpg') }}" class="card-img-top" alt="..." style="display:block; margin-left: auto; margin-right: auto; max-height:150px; width:auto; padding:10px;">
+      <div class="card-body">
+        <h5 class="card-title" style="text-align:center;">Mig Welding</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100 border-0">
+      <img src="{{ url_for ('static', filename='/images/PR-8 With Handle.jpg') }}" class="card-img-top" alt="..." style="display:block; margin-left: auto; margin-right: auto; max-height:150px; width:auto; padding: 5px;">
+      <div class="card-body">
+        <h5 class="card-title" style="text-align:center;">Riveting</h5>
+      </div>
+    </div>
+  </div>
+</div>

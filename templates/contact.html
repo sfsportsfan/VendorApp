@@ -1,0 +1,25 @@
+{% include "header.html" %}
+
+<!-- Jumbotron -->
+
+<div style="height: 50px;"></div>
+
+<div class="p-5 text-center bg-image rounded-3" style="
+    background-image: url('https://americantorchtip.com/wp-content/uploads/2021/10/AdobeStock_260336691-1536x1026.jpeg');
+    background-size: cover;
+    background-position: center;
+  ">
+  <div class="mask" style="background-color: rgba(0, 0, 0, 0.6); padding: 80px;">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="text-white">
+        <h1 class="mb-3">Hi {{ first_name }},</h1>
+        <br>
+        <h6 class="mb-3">Thompson Teague is your Account Manager and will contact your shortly. {{ equipment }}</h6>
+        <br>
+        <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" href="{{ apply }}" role="button">Complete Credit Application</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Jumbotron -->
+
