@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import requests
 from consumer_details import CONSUMER_KEY, CONSUMER_SECRET, USERNAME, PASSWORD
 from bs4 import BeautifulSoup
+import csv
 
 app = Flask(__name__)
 
@@ -36,7 +37,13 @@ def calculate_monthly_payment(amount, interest_rate=9.25, term=60):
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
+    with open('equip_list.csv', 'r') as equip_file:
+        csv_reader = csv.reader(equip_file)
+
+        equip_list = list(csv_reader)
+        print(equip_list)
+
+    return render_template("index.html", equip_list=equip_list)
 
 @app.route("/prospot", methods=["GET", "POST"])
 def prospot_payment():

@@ -19,20 +19,9 @@
               <span class="input-group-text"><i class="fas fa-file-lines" style="width: 7px"></i></span>
               <select class="form-control" name="equipment" style="focus:none; box-shadow: none;">
                 <option value="" disabled selected>Choose Equipment</option>
-                <option value="I5 Smart Welder">I5 Smart Welder</option>
-                <option value="I5s Smart Welder">I5s Smart Welder</option>
-                <option value="I4 Inverter Spot Welder">I4 Inverter Spot Welder</option>
-                <option value="I4s Inverter Spot Welder">I4s Inverter Spot Welder</option>
-                <option value="Hybrid Spot Welder">Hybrid Spot Welder</option>
-                <option value="SP-5 Smart Mig">SP-5 Smart Mig</option>
-                <option value="SP-5 Double Pulse Mig">SP-5 Double Pulse Mig</option>
-                <option value="PR-8D Rivet Bonding Station">PR-8D Rivet Bonding Station</option>
-                <option value="PR-5D Digital Rivet Bonding Station">PR-5D Digital Rivet Bonding Station</option>
-                <option value="PR-8D Digital Riveting System">PR-8D Digital Riveting System</option>
-                <option value="MWS-G2d, 110V Glue Pull">MWS-G2d, 110V Glue Pull</option>
-                <option value="PR-8D Pro">PR-8D Pro</option>
-                <option value="PS-DA5 - Drawn Arc Welder">PS-DA5 - Drawn Arc Welder</option>
-                <option value="i4 Cassette Assembly">i4 Cassette Assembly</option>
+                {% for equip in equip_list %}
+                <option value="{{equip[0]}}">{{ equip[0] }}</option>
+                {% endfor %}
               </select>
             </div>
             <div class="input-group mb-3">
