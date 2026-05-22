@@ -1,10 +1,37 @@
 {% include "header.html" %}
-<div class="container" style="height: 75px;"></div>
 {% if amount is not none and payment is not none %}
+<style>
+  .bg-image {
+     background-image: url("{{ url_for ('static', filename='/images/welder.jpg') }}");
+     height: 100vh;
+     background-size: cover;
+    }
 
-  <div class="container">
+  .form-control {
+    background-color: transparent;
+    color: white !important;
+    border-radius: 0;
+    focus: none;
+    box-shadow: none;
+    }
+
+  .form-control::placeholder {
+     color: white !important;
+     opacity: 0.7 !important;
+    }
+
+  .card {
+    border-radius: 0;
+    border: none;
+    }
+
+</style>
+
+<div class="bg-image">
+    <br>
+    <br>
      <div class="row">
-      <div class="card col-4 offset-1" style="background-color: #003366; color: white; text-align: center;">
+      <div class="card col-4 offset-1" style="background-color: rgb(0,0,0, 0.6); color: white; text-align: center;">
         <div class="card-body">
               <h1><b>{{ payment }}</b></h1>
                 <p style="opacity: 0.7;">Per Month</p>
@@ -19,40 +46,36 @@
               <p style="opacity: 0.7;">Financed Amount</p>
         </div>
       </div>
-           <div class="card col-6">
+           <div class="card col-6" style="background-color: rgb(0,0,0, 0.6); color: white;">
              <div class="card-body">
-                 <h4 style="color: #003366; text-align: center; font-weight: bold;">Company Info</h4>
+                 <br>
+                 <h2 style="color: white; text-align: center; font-weight: bold;">Company Info</h2>
                  <br>
                  <form method="POST" action="{{ url_for('contact') }}" style="box-shadow: none;">
                      <input type="hidden" name="equipment" value="{{ equipment }}">
                      <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-building-columns" style="width: 15px"></i></span>
-                        <input type="text" class="form-control" id="validationDefault01" name="Company" placeholder="Company Name" style="focus:none; box-shadow: none;" required>
+                        <input type="text" class="form-control bg-transparent" id="validationDefault01" name="Company" placeholder="Company Name" style="focus:none; box-shadow: none;" required>
                      </div>
                      <div class="row g-3">
                         <div class="col">
                              <div class="input-group mb-3">
-                                <span class="input-group-text"><i class="fa-solid fa-person" style="width: 15px"></i></span>
-                                <input type="text" class="form-control" name="FirstName" id="First Name" placeholder="First Name" style="focus:none; box-shadow: none;" required>
+                                <input type="text" class="form-control bg-transparent" name="FirstName" id="First Name" placeholder="First Name" style="focus:none; box-shadow: none;" required>
                              </div>
                         </div>
                         <div class="col">
                              <div class="input-group mb-3">
-                                <span class="input-group-text"><i class="fa-solid fa-person" style="width: 15px"></i></span>
-                                <input type="text" class="form-control" name="LastName" id="Last Name" placeholder="Last Name" style="focus:none; box-shadow: none;" required>
+                                <input type="text" class="form-control bg-transparent" name="LastName" id="Last Name" placeholder="Last Name" style="focus:none; box-shadow: none;" required>
                              </div>
                         </div>
                      </div>
                      <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-mobile-screen-button" style="width: 15px"></i></span>
-                        <input type="text" class="form-control" name="Phone" id="Phone" placeholder="Phone" style="focus:none; box-shadow: none;" required>
+                        <input type="text" class="form-control bg-transparent" name="Phone" id="Phone" placeholder="Phone" style="focus:none; box-shadow: none;" required>
                      </div>
                      <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-regular fa-envelope" style="width: 15px"></i></span>
-                        <input type="text" class="form-control" name="Email" id="Email" placeholder="Email" style="focus:none; box-shadow: none;" required>
+                        <input type="text" class="form-control bg-transparent" name="Email" id="Email" placeholder="Email" style="focus:none; box-shadow: none;" required>
                      </div>
                      <div>
-                         <button type="submit" class="btn btn-light" style="background-color: #003366; color: white;">Submit</button>
+                         <button type="submit" class="btn btn-outline-light">Submit</button>
                      </div>
                  </form>
              </div>

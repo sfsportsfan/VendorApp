@@ -1,65 +1,48 @@
 {% include "header.html" %}
+<style>
+  .bg-image {
+     background-image: url("{{ url_for ('static', filename='/images/welder.jpg') }}");
+     height: 100vh;
+     background-size: cover;
+    }
 
-<div class="container" style="height: 25px;"></div>
+  .form-control::placeholder {
+     color: white !important;
+     opacity: 0.7 !important;
+    }
 
-<div class="container" style="height:50px;"></div>
-<div class="card col-6 offset-3" style="max-width: 700px; border-color: #003366;">
-  <div class="row g-0">
-    <div class="col-md-4" style="display: flex;
-                        justify-content: center;
-                        align-items: center;">
-      <img src="{{ url_for ('static', filename='/images/i4.jpg') }}" class="img-fluid rounded-start" alt="prospotwelder" style="width:78%; padding: 10px;">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body card text-white" style="background-color: #003366;">
-        <h5 class="card-title">Equipment Info</h5>
-        <p class="card-text">
-          <form method="POST" action="{{ url_for('prospot_payment') }}">
-            <div class="input-group mb-3">
-              <span class="input-group-text"><i class="fas fa-file-lines" style="width: 7px"></i></span>
-              <select class="form-control" name="equipment" style="focus:none; box-shadow: none;">
-                <option value="" disabled selected>Choose Equipment</option>
-                {% for equip in equip_list %}
-                <option value="{{equip[0]}}">{{ equip[0] }}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text"><i class="fas fa-dollar-sign" style="width: 7px"></i></span>
-              <input class="form-control" type="number" name="cost" placeholder="Equipment Cost" aria-label="Equipment Cost" style="focus:none; box-shadow: none;">
-            </div>
-            <button type="submit" class="btn btn-light" style="color: #003366;">Calculate Payment</button>
-            <p></p>
-          </form>
-      </div>
-    </div>
-  </div>
+</style>
+
+<div class="bg-image">
+        <br>
+        <br>
+        <div class="card col-10 p-2 offset-1" style="background-color: rgb(0,0,0, 0.6); display: block;">
+            <div class="row">
+              <div class="col-4 text-center">
+                <img src="{{ url_for ('static', filename='/images/i4.png') }}" class="img-fluid rounded-start" alt="prospotwelder" style="width:70%; padding: 5px;">
+              </div>
+              <div class="col-6 pt-5">
+                <h2 class="text-white">Free ProSpot Financing Quote</h2>
+                <p></p>
+                <form method="POST" action="{{ url_for('prospot_payment') }}">
+                    <p></p>
+                    <div class="input-group mb-3">
+                      <select class="form-control" name="equipment" style="focus: none; box-shadow: none; background-color: transparent; color: white; opacity: 0.7; border-radius: 0;">
+                        <option value="" disabled selected>Choose Equipment</option>
+                        {% for equip in equip_list %}
+                        <option value="{{equip[0]}}">{{ equip[0] }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <p></p>
+                    <div class="input-group mb-3">
+                      <input class="form-control" type="number" name="cost" placeholder="Enter Equipment Cost" aria-label="Equipment Cost" style="focus:none; box-shadow: none; background-color: transparent; color: white; border-radius: 0;">
+                    </div>
+                    <p></p>
+                    <button type="submit" class="btn btn-outline-light">Calculate Payment</button>
+                  </form>
+              </div>
+        </div>
+        </div>
 </div>
-<div class="container" style="height: 50px;"></div>
-<div class="container">
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="col">
-    <div class="card h-100 border-0">
-      <img src="{{ url_for ('static', filename='/images/i4s-new-base.jpg') }}" class="card-img-top" alt="..." style="display:block; margin-left: auto; margin-right: auto; max-height:150px; width:auto;">
-      <div class="card-body">
-        <h5 class="card-title" style="text-align:center;">Spot Welding</h5>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100 border-0">
-      <img src="{{ url_for ('static', filename='/images/SP5-DP.jpg') }}" class="card-img-top" alt="..." style="display:block; margin-left: auto; margin-right: auto; max-height:150px; width:auto; padding:10px;">
-      <div class="card-body">
-        <h5 class="card-title" style="text-align:center;">Mig Welding</h5>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100 border-0">
-      <img src="{{ url_for ('static', filename='/images/PR-8 With Handle.jpg') }}" class="card-img-top" alt="..." style="display:block; margin-left: auto; margin-right: auto; max-height:150px; width:auto; padding: 5px;">
-      <div class="card-body">
-        <h5 class="card-title" style="text-align:center;">Riveting</h5>
-      </div>
-    </div>
-  </div>
-</div>
+
