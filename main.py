@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import requests
 from consumer_details import CONSUMER_KEY, CONSUMER_SECRET, USERNAME, PASSWORD
 from bs4 import BeautifulSoup
@@ -31,49 +31,55 @@ def calculate_monthly_payment(amount, interest_rate=9.25, term=60):
         return amount / term
 
     payment = amount * (monthly_rate * (1 + monthly_rate) ** term) / ((1 + monthly_rate) ** term - 1)
-    formatted_payment = f"${payment:.2f}"
+    formatted_payment = f"${payment:,.0f}"
 
     return formatted_payment
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    with open('equip_list.csv', 'r') as equip_file:
-        csv_reader = csv.reader(equip_file)
 
-        equip_list = list(csv_reader)
-        print(equip_list)
-
-    return render_template("index.html", equip_list=equip_list)
-
-@app.route("/prospot", methods=["GET", "POST"])
-def prospot_payment():
     amount = None
-    monthly_payment = None
-    equipment = None
+    error = False
+    message = None
 
     if request.method == "POST":
-        try:
-            equipment = request.form.get("equipment")
-            amount = float(request.form["cost"])  # Fetch cost from form
-            monthly_payment = calculate_monthly_payment(amount)  # Calculate payment
-        except (ValueError, KeyError):  # Handle missing or invalid data
-            amount = None
-            monthly_payment = None
-            equipment = None
+        cost = request.form.get("cost")
 
-    return render_template("prospot.html", amount='${:,.2f}'.format(amount), payment=monthly_payment, equipment=equipment)
+        try:
+            amount = int(cost)
+        except (ValueError, TypeError):
+            error = True
+            message = "Please enter a valid equipment cost."
+            return render_template("index.html", step=1, error=error, message=message, equip_cost=None)
+
+        if amount < 5000:
+            error = True
+            message = "Equipment cost must be greater than $5,000"
+            return render_template("index.html", error=error, message=message, equip_cost=None, step=1)
+
+        return redirect (url_for('payment', amount=amount, step=2))
+
+    return render_template("index.html", error=error, message=message, equip_cost=amount,  step=1)
+
+
+
+@app.route("/payment", methods=["GET", "POST"])
+def payment():
+    amount = int(request.args.get("amount"))
+
+    formatted_amount = f"${amount:,.0f}"
+    monthly_payment = calculate_monthly_payment(amount)
+
+    return render_template("prospot.html", step=2, amount=amount, payment=monthly_payment, cost=formatted_amount)
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     if request.method == "POST":
-        print(request.form)
-        company = request.form.get("Company")
-        first_name = request.form.get("FirstName")
-        last_name = request.form.get("LastName")
-        phone = request.form.get("Phone")
-        email = request.form.get("Email")
-
-        equipment = request.form.get("equipment")
+        company = request.form.get("company")
+        first_name = request.form.get("first")
+        last_name = request.form.get("last")
+        phone = request.form.get("phone")
+        email = request.form.get("email")
 
         access_token, error = generate_token()
         print(f"{access_token}")
@@ -93,7 +99,7 @@ def contact():
             "LeadSource": "ProSpot Referral",
         }
 
-        response = requests.post(URL + '/services/data/v62.0/sobjects/Lead/', json=new_lead, headers=headers)
+        response = requests.post(URL + '/services/data/v64.0/sobjects/Lead/', json=new_lead, headers=headers)
         data = response.json()
         print(data)
 
@@ -105,12 +111,12 @@ def contact():
 
         print(app_data)
 
-        app_url = app_data.get("Online_App_URL__c")
+        app_url = app_data.get("AhiSign_App_URL__c")
 
         soup = BeautifulSoup(app_url, 'html.parser')
         url = soup.a['href']
 
-    return render_template("contact.html", first_name=first_name, apply=url, equipment=equipment)
+    return render_template("contact.html", step=3, first_name=first_name, apply=url)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5002)

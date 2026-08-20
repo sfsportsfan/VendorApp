@@ -1,28 +1,19 @@
-{% include "header.html" %}
+{% extends "base.html" %}
 
-<!-- Jumbotron -->
-<style>
-  .bg-image {
-     background-image: url("{{ url_for ('static', filename='/images/welder.jpg') }}");
-     height: 100vh;
-     background-size: cover;
-    }
-
-</style>
-<div class="text-center bg-image">
-  <br>
-  <br>
-  <div class="card col-10 p-2 offset-1" style="background-color: rgba(0, 0, 0, 0.6); height: 350px;">
-    <div class="d-flex justify-content-center align-items-center h-100">
-      <div class="text-white">
-        <h1 class="mb-3">Hi {{ first_name }},</h1>
+{% block content %}
+ <div class="container text-center">
+    <div class="row justify-content-center mt-4 mb-3">
+        <div class="col-6 justify-content-start">
+        <h5 class="mb-3">Hi {{ first_name | title }},</h5>
         <br>
-        <h6 class="mb-3">Thompson Teague is your Account Manager and will contact you about financing your {{ equipment }}.</h6>
+        <h6 class="mb-3" style="color: white; font-weight: 300;">My name is Thompson Teague and I will be your main point of contact. If you are
+        ready to secure the financing for your equipment, please click the link below and complete the
+        application. I will be reaching out shortly to answer any questions you have.</h6>
         <br>
-        <a data-mdb-ripple-init class="btn btn-outline-light" href="{{ apply }}" role="button">Complete Credit Application</a>
-      </div>
+        <a class="btn btn-custom w-100" href="{{ apply }}">Complete Credit Application</a>
+        </div>
     </div>
   </div>
-</div>
-<!-- Jumbotron -->
+{% endblock %}
+
 

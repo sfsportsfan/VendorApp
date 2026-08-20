@@ -1,48 +1,35 @@
-{% include "header.html" %}
-<style>
-  .bg-image {
-     background-image: url("{{ url_for ('static', filename='/images/welder.jpg') }}");
-     height: 100vh;
-     background-size: cover;
-    }
+{% extends "base.html" %}
 
-  .form-control::placeholder {
-     color: white !important;
-     opacity: 0.7 !important;
-    }
+{% block content %}
 
-</style>
-
-<div class="bg-image">
-        <br>
-        <br>
-        <div class="card col-10 p-2 offset-1" style="background-color: rgb(0,0,0, 0.6); display: block;">
-            <div class="row">
-              <div class="col-4 text-center">
-                <img src="{{ url_for ('static', filename='/images/i4.png') }}" class="img-fluid rounded-start" alt="prospotwelder" style="width:70%; padding: 5px;">
-              </div>
-              <div class="col-6 pt-5">
-                <h2 class="text-white">Free ProSpot Financing Quote</h2>
-                <p></p>
-                <form method="POST" action="{{ url_for('prospot_payment') }}">
-                    <p></p>
+<div class="container text-center">
+    <div class="row justify-content-center">
+        <div class="col-6 mb-4">
+            {% if equip_cost == None %}
+                <div class="message d-flex align-items-center" style="height: 30px;">
+                    {% if error %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16" style="margin: 0px 5px;">
+                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                    </svg>  {{ message }}
+                    {% endif %}
+                </div>
+                <form class="w-100" method="POST">
                     <div class="input-group mb-3">
-                      <select class="form-control" name="equipment" style="focus: none; box-shadow: none; background-color: transparent; color: white; opacity: 0.7; border-radius: 0;">
-                        <option value="" disabled selected>Choose Equipment</option>
-                        {% for equip in equip_list %}
-                        <option value="{{equip[0]}}">{{ equip[0] }}</option>
-                        {% endfor %}
-                      </select>
+                        <span class="input-group-text">
+                            <i class="bi bi-currency-dollar"></i>
+                        </span>
+                        <input type="number" class="form-control" name="cost" placeholder="Enter Equipment Cost from your Quote">
                     </div>
-                    <p></p>
-                    <div class="input-group mb-3">
-                      <input class="form-control" type="number" name="cost" placeholder="Enter Equipment Cost" aria-label="Equipment Cost" style="focus:none; box-shadow: none; background-color: transparent; color: white; border-radius: 0;">
-                    </div>
-                    <p></p>
-                    <button type="submit" class="btn btn-outline-light">Calculate Payment</button>
-                  </form>
-              </div>
+                    <button class="btn btn-custom w-100" type="submit">Get Financing Estimate</button>
+                </form>
+            {% endif %}
         </div>
-        </div>
-</div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+</script>
+
+{% endblock %}
 
