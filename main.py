@@ -35,6 +35,22 @@ def calculate_monthly_payment(amount, interest_rate=9.25, term=60):
 
     return formatted_payment
 
+def deferred_payment(amount, rate=.1025):
+    principal = amount * 1.10
+    promo = 99
+
+    i = rate / 12
+    v = 1 / (1 + i)
+    v3 = v ** 3
+    a3 = (1 - v3) / i
+    a59 = (1 - v ** 59) / i
+
+    X = (principal - promo * a3) / (1 + v3 * a59)
+    formatted_payment = f"${X:,.2f}"
+
+    return formatted_payment
+
+
 @app.route("/", methods=["GET", "POST"])
 def index():
 
@@ -67,8 +83,8 @@ def index():
 def payment():
     amount = int(request.args.get("amount"))
 
-    formatted_amount = f"${amount:,.0f}"
-    monthly_payment = calculate_monthly_payment(amount)
+    formatted_amount = f"${amount:,.2f}"
+    monthly_payment = deferred_payment(amount)
 
     return render_template("prospot.html", step=2, amount=amount, payment=monthly_payment, cost=formatted_amount)
 
