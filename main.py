@@ -30,13 +30,15 @@ def calculate_monthly_payment(amount, interest_rate=9.25, term=60):
     if monthly_rate == 0:
         return amount / term
 
-    payment = amount * (monthly_rate * (1 + monthly_rate) ** term) / ((1 + monthly_rate) ** term - 1)
+    principal = amount * 1.05
+
+    payment = principal * (monthly_rate * (1 + monthly_rate) ** term) / ((1 + monthly_rate) ** term - 1)
     formatted_payment = f"${payment:,.0f}"
 
     return formatted_payment
 
 def deferred_payment(amount, rate=.1025):
-    principal = amount * 1.10
+    principal = amount * 1.05
     promo = 99
 
     i = rate / 12
@@ -82,11 +84,16 @@ def index():
 @app.route("/payment", methods=["GET", "POST"])
 def payment():
     amount = int(request.args.get("amount"))
+    deferral = request.args.get("deferral") == "true"
 
     formatted_amount = f"${amount:,.2f}"
-    monthly_payment = deferred_payment(amount)
 
-    return render_template("prospot.html", step=2, amount=amount, payment=monthly_payment, cost=formatted_amount)
+    if deferral:
+        monthly_payment = deferred_payment(amount)
+    else:
+        monthly_payment = calculate_monthly_payment(amount)
+
+    return render_template("prospot.html", deferral=deferral, step=2, amount=amount, payment=monthly_payment, cost=formatted_amount)
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():

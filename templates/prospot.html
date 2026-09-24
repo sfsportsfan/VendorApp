@@ -4,10 +4,19 @@
 <div class="container text-center">
     <div class="row justify-content-center mt-4 mb-3">
         <div class="col-6">
-            <div class="card px-3 py-1 text-start">
-                <p style="margin-bottom: 2px;">Promotional Offer:</p>
-                <h4 style="margin-top: 0px;">Payments Deferred 90 Days</h4>
-            </div>
+            <form method="GET" action="{{ url_for('payment') }}">
+                <input type="hidden" name="amount" value="{{ amount }}">
+                <label class="toggle">
+                    <input type="checkbox" name="deferral" value="true"
+                           {{ 'checked' if deferral else '' }}
+                            onchange="this.form.submit()">
+                    <span class="track">
+                        <span class="highlight"></span>
+                        <span class="option option-standard">Standard Program</span>
+                        <span class="option option-deferral">90 Day Deferral</span>
+                    </span>
+                </label>
+            </form>
         </div>
     </div>
     <div class="row justify-content-center mt-4 mb-3">
@@ -89,6 +98,7 @@
                     </div>
                     <div class="col-3">
                          <button type="submit" class="btn btn-custom w-100">Next</button>
+                    </div>
                 </div>
             </form>
     </div>
