@@ -5,12 +5,12 @@ html {
 }
 
 h2 {
-    color: white !important;
+    color: #0d2c5c !important;
     font-weight: 600 !important;
 }
 
 body {
-    background-image: url("/static/images/backgroundps.png");
+    background-image: white;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -23,23 +23,23 @@ body {
 
 .form-control {
     background-color: transparent !important;
-    border-color: white !important;
+    border-color: #0d2c5c !important;
     box-shadow: none !important;
-    color: white !important;
+    color: #0d2c5c !important;
     border-left: none !important;
 }
 
 .form-control::placeholder {
-    color: white !important;
+    color: #0d2c5c !important;
     font-weight: 100;
 }
 
 .message {
-    color: white;
+    color: #0d2c5c;
 }
 
 .card {
-    background-color: #1c50a390 !important;
+    background-color: #0d2c5c !important;
     border: none !important;
     color: white !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19);
@@ -49,28 +49,29 @@ p {
     font-weight: 200;
     padding: 0;
     margin: 0;
+    color: #0d2c5c;
 }
 
 .btn-custom:hover {
-    background-color: #4169E1 !important;
-    color: white !important;
-    border-color: #4169E1 !important;
+    background-color: white !important;
+    color: #0d2c5c !important;
+    border-color: #0d2c5c !important;
 }
 
 .btn-custom {
-    background-color: white !important;
-    color: #4169E1 !important;
+    background-color: #0d2c5c !important;
+    color: white !important;
 }
 
 .btn-custom:active {
-    background-color: #4169E1 !important;
+    background-color: #0d2c5c !important;
     color: white !important;
-    border-color: #4169E1 !important;
+    border-color: #0d2c5c !important;
     transform: scale(0.95);
 }
 
 h5 {
-    color: white !important;
+    color: #0d2c5c !important;
 }
 
 .logo-img {
@@ -86,7 +87,7 @@ h5 {
 }
 
 .custom-text {
-    color: #2C3594 !important;
+    color: #0d2c5c !important;
     font-size: 32px;
     letter-spacing: 4px;
     font-weight: 400;
@@ -106,18 +107,20 @@ h5 {
     justify-content: center;
     height: 35px;
     width: 35px;
-    color: #2C3594;
+    color: #0d2c5c;
     border-radius: 50%;
     background-color: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    border: 2px solid #0d2c5c;
 }
 
 .steps .circle.active {
     background-color: white;
-    color: #2C3594;
+    color: #0d2c5c;
     height: 35px;
     width: 35px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    border: 2px solid #0d2c5c;
 }
 
 .steps .circle.current {
@@ -127,6 +130,7 @@ h5 {
     height: 50px;
     width: 50px;
     font-weight: 700;
+    border: none;
 }
 
 
@@ -169,7 +173,7 @@ h5 {
     height: 7px;
     width: 100%;
     background-color: transparent;
-    border: 1px solid white;
+    border: 1px solid #0d2c5c;
     z-index: -1;
 }
 
@@ -177,19 +181,19 @@ h5 {
     position: absolute;
     height: 100%;
     width: 100%;
-    background: white;
+    background: #0d2c5c;
     transition: width 0.4s ease;
-    border: 1px solid white !important;
 }
 
 h5 {
     font-weight: 300 !important;
-    color: white !important;
+    color: #0d2c5c !important;
 }
 
 .input-group-text {
     background-color: transparent !important;
-    color: white !important;
+    color: #0d2c5c !important;
+    border-color: #0d2c5c !important;
     border-right: none !important;
 }
 
