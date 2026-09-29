@@ -48,7 +48,7 @@ def deferred_payment(amount, rate=.1025):
     a59 = (1 - v ** 59) / i
 
     X = (principal - promo * a3) / (1 + v3 * a59)
-    formatted_payment = f"${X:,.2f}"
+    formatted_payment = f"${X:,.0f}"
 
     return formatted_payment
 
